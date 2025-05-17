@@ -10,12 +10,10 @@ const PORT = 3003
 
 
 
-app.get("/",(req,res)=>{
+app.get("/",async(req,res)=>{
 try {
-    const file = path.join(import.meta.dirname,"public","index.html")
-    console.log(file)
-    res.sendFile(file)
-
+   const file = path.join(import.meta.dirname,"public","index.html")
+  await res.sendFile(file)
 } catch (error) {
     
 }
