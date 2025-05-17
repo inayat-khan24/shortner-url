@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="container max-w-md w-full bg-white rounded-xl shadow-lg p-6 space-y-4">
+    <h1 class="text-2xl font-bold text-center text-blue-600">URL Shortener</h1> 
+    
+    <form action="/" method="post">
+      <div>
+        <label for="url" class="block text-sm font-medium text-gray-700">Enter URL</label>
+        <input type="text" name="url" id="url" required
+        class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300" />
+      </div>
+      
+      <div>
+        <label for="shortCode" class="block text-sm font-medium text-gray-700">Enter Short Code</label>
+        <input type="text" name="shortCode" id="shortCode" required
+               class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300" />
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+        Shorten URL
+      </button>
+    </form>
+
+    <div>
+      <h2 class="text-lg font-semibold text-gray-800 mt-4">Shortened URLs</h2>
+      <ul  class="list-disc pl-5 text-sm text-gray-700 mt-2">
+            {{shorten_urls}}
+
+      </ul>
+    </div>
+  </div>
+
+
+
+</body>
+</html>
+ 
