@@ -2,6 +2,7 @@ import { readFile, writeFile } from "fs/promises"
 import crypto from "crypto"
 import path from "path"
 import { Router } from "express"
+import { postURLShortner } from "../controllers/postshortner.controller.js"
 
 const router  = Router();
 
@@ -49,28 +50,8 @@ return res.send(content)
 
 
 
-// post method
 
-router.post("/", async(req,res)=>{
-try {
-   const {url,shortCode} = req.body 
-   const finalShortcode = shortCode || crypto.randomBytes(4).toString("hex")
-   const links = await loadLinks();  
-    if(links[finalShortcode]){
-        return res.status(400).send("Short code already exists. please choose another.");
-    }
-   
-    links[finalShortcode] = url
-  await saveLinks(links) 
-  return res.redirect("/")    
-
-    
-} catch (error) {
-    console.error(error)
-    return res.status(500).send("Internal server error")
-} 
-
-})
+router.post("/",postURLShortner)
 
 router.get("/:shortCode",async(req,res)=>{
 try {
