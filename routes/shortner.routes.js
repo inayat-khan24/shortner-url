@@ -5,6 +5,7 @@ import { Router } from "express"
 
 const router  = Router();
 
+
 // path of JSON sile
 const DATA_file = path.join("data","links.json")
 
@@ -26,8 +27,17 @@ const saveLinks = async(links)=>{
 await writeFile(DATA_file,JSON.stringify(links))
 }
 
+const example = "<h2> i am a example</h2>"
 
 
+router.get("/report",(req,res)=>{
+const student = [
+     {name:"cesur",age:"25"},
+      {name:"salar",age:"28"}
+]
+
+return  res.render("report",{student})
+})
 
 
 

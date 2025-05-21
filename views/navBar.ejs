@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Header + Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="bg-white shadow-sm py-3">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-semibold text-gray-800">MyWebsite</h1>
+      <p class="text-gray-500 hidden sm:block">Welcome to the site!</p>
+    </div>
+  </header>
+
+  <!-- Navbar Section -->
+  <nav class="bg-[black] text-white shadow-md">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo (optional repeat or icon) -->
+      <div class="text-lg font-bold">Menu</div>
+
+      <!-- Desktop Nav Links -->
+      <ul class="hidden md:flex mr-[200px] space-x-8">
+        <li><a href="#" class="hover:text-gray-200">Home</a></li>
+        <li><a href="#" class="hover:text-gray-200">Services</a></li>
+        <li><a href="#" class="hover:text-gray-200">About</a></li>
+        <li><a href="#" class="hover:text-gray-200">Contact</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20">
+          <path d="M3 6h14M3 12h14M3 18h14" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+      <ul class="space-y-2">
+        <li><a href="#" class="block py-1 hover:text-gray-300">Home</a></li>
+        <li><a href="#" class="block py-1 hover:text-gray-300">Services</a></li>
+        <li><a href="#" class="block py-1 hover:text-gray-300">About</a></li>
+        <li><a href="#" class="block py-1 hover:text-gray-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
