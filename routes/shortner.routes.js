@@ -1,5 +1,12 @@
 import { readFile, writeFile } from "fs/promises"
 import crypto from "crypto"
+import path from "path"
+import { Router } from "express"
+
+const router  = Router();
+
+// path of JSON sile
+const DATA_file = path.join("data","links.json")
 
 const loadLinks = async () => {
   try {
@@ -24,7 +31,7 @@ await writeFile(DATA_file,JSON.stringify(links))
 
 
 
-app.get("/",async(req,res)=>{
+router.get("/",async(req,res)=>{
 try {
   const file = await readFile(path.join("views","index.html"))
   const links = await loadLinks()
@@ -48,7 +55,7 @@ return res.send(content)
 
 // post method
 
-app.post("/", async(req,res)=>{
+router.post("/", async(req,res)=>{
 try {
    const {url,shortCode} = req.body 
    const finalShortcode = shortCode || crypto.randomBytes(4).toString("hex")
@@ -69,7 +76,7 @@ try {
 
 })
 
-app.get("/:shortCode",async(req,res)=>{
+router.get("/:shortCode",async(req,res)=>{
 try {
     const {shortCode} = req.params
     const links = await loadLinks()
@@ -81,3 +88,6 @@ try {
     return res.status(500).send("Internal Server error")
 }
 })
+
+// Name export 
+export const shortnerRoutes = router
