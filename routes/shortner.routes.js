@@ -27,20 +27,6 @@ const saveLinks = async(links)=>{
 await writeFile(DATA_file,JSON.stringify(links))
 }
 
-const example = "<h2> i am a example</h2>"
-
-
-router.get("/report",(req,res)=>{
-const student = [
-     {name:"cesur",age:"25"},
-      {name:"salar",age:"28"}
-]
-
-return  res.render("report",{student})
-})
-
-
-
 router.get("/",async(req,res)=>{
 try {
   const file = await readFile(path.join("views","index.html"))
