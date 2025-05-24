@@ -1,5 +1,5 @@
 import crypto from "crypto"
-import { loadLinks,saveLinks } from "../models/shotner.model.js"
+import { loadLinks,saveLinks,getLinkByshortCode} from "../models/shotner.model.js"
 
 
 
@@ -25,9 +25,8 @@ try {
     if(links[finalShortcode]){
         return res.status(400).send("Short code already exists. please choose another.");
     }
-   
-    links[finalShortcode] = url
-  await saveLinks(links) 
+   // now we pass url and shortnode who come form user
+  await saveLinks({url,shortCode})
   return res.redirect("/")    
 
     
@@ -39,9 +38,13 @@ try {
 export const redirectToShortLink = async(req,res)=>{
 try {
     const {shortCode} = req.params
-    const links = await loadLinks()
-    if(!links[shortCode]) return res.status(404).send("404 error occured")
-    return res.redirect(links[shortCode])
+   
+    // we get data with getLinkByshortCode
+    const link = await getLinkByshortCode(shortCode)
+   
+    if(!link) return res.redirect("/404")
+        return res.redirect(link.url)
+        
   
 } catch (error) {
     console.error(error)

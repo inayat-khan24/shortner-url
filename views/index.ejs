@@ -32,14 +32,9 @@
     <div>
       <h2 class="text-lg font-semibold text-gray-800 mt-4">Shortened URLs</h2>
       <ul  class="list-disc pl-5 text-sm text-gray-700 mt-2">
-           <!-- Object.entries(links).map(
-        ([shortCode,url])=>
-            `<li> <a href="/${shortCode}" target="_blank" class="text-blue-700"> ${host}/${shortCode}</a> - ${url} </li>`
-    ).join("")
+       
 
-  ) -->
-
-  <% Object.entries(links).map(([shortCode,url])=> { %>
+  <% links.map(({shortCode,url})=> { %>
 <% const truncate = url.length > 30 ? `${url.slice(0,50)}...`: ""   %>
     <li >
       <a href="/<%= shortCode %>" target="_blank" class="text-blue-600">
