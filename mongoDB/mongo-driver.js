@@ -13,7 +13,7 @@ const db  = client.db("mangodb_nodejs_db")
 const userCollection = db.collection("user")
 
 // 4) now insert data
-// userCollection.insertOne({name:"node js series",age:"26"})
+// userCollection.insertOne({name:"web_devloper",age:"26"})
 
 
 
@@ -24,4 +24,59 @@ const userCollection = db.collection("user")
 //     {name:"MANGOGB series",role:"database",age:"26"}
 // ])
 
-/// read method
+///===========================================
+//   Red method
+//============================================
+
+
+// const usersCursor = userCollection.find()
+// console.log(usersCursor)
+
+// // irrate data becoz that come in a cursor format
+
+// for await(const user of usersCursor){
+//     console.log(user)
+// }
+
+
+// now we convert obj in arry 
+
+// const usersCursor = await userCollection.find().toArray()
+
+// console.log(usersCursor)
+
+// if we want to find only single data then use this method
+// const user = await userCollection.findOne({name:"web_devloper"})
+// console.log(user)
+// // only if want to get id the use toHexString
+// console.log(user._id.toHexString())
+
+///===========================================
+//   Update method
+//============================================
+
+// if we want to update data mean change value then use this method and which value we want to
+// update that value give in {$set} set property
+// await userCollection.updateOne({name:"MANGOGB series"},{$set:{age:"30"}})
+
+
+///===========================================
+//   DELETE method
+//============================================
+
+// 1) if we want to delete data.
+
+// await userCollection.deleteOne({name:"node js series"})
+
+//2)  if we want to delete all data then use this method
+
+const result = await userCollection.deleteMany({role:"make web site"})
+// if we want to check how many data deleted 
+console.log(`${result.deletedCount} document deleted`)
+
+
+
+
+
+
+
