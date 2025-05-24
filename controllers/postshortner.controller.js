@@ -1,21 +1,13 @@
 import crypto from "crypto"
-import { readFile } from "fs/promises"
-import path from "path"
 import { loadLinks,saveLinks } from "../models/shotner.model.js"
+
 
 
 export const getShortnerPage = async(req,res)=>{
 try {
-  const file = await readFile(path.join("views","index.html"))
+ 
   const links = await loadLinks()
-  const content = file.toString().replaceAll("{{shorten_urls}}",
- Object.entries(links).map(
-        ([shortCode,url])=>
-            `<li> <a href="/${shortCode}" target="_blank" class="text-blue-700"> ${req.host}/${shortCode}</a> - ${url} </li>`
-    ).join("")
-
-  )
-return res.send(content)
+ return res.render("index",{links,host:req.host})
 
 } catch (error) {
      console.error(error)
