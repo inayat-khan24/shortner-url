@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 
 
 // step 1: now we are creating connection with mangoose
@@ -21,18 +21,21 @@ const userSchema = mongoose.Schema({
 name:{type: String,required:true},
 email:{type: String, required: true, unique:true},
 age : {type:Number,required:true , min:5},
-createdAt : {type:Date, default: Date.now() },
-updated : {type:Date, default: Date.now() }
+// createdAt : {type:Date, default: Date.now() },
+// updated : {type:Date, default: Date.now() }
+},{
+    // if we use timestamps then we dont have need of middleware and also give value.
+    timestamps:true
 })
 
 
 // we will usemiddleware and If we provide values in an array, it means we want to run this before each of those items
 // and first thing we shound use before create model 
-userSchema.pre(["updateOne","updateMany","findOneAndUpdate"],function(next) {
-    this.set({updated: Date.now()})
-  // now we have to call next for to jump next step mean data save
-    next()
-})
+// userSchema.pre(["updateOne","updateMany","findOneAndUpdate"],function(next) {
+//     this.set({updated: Date.now()})
+//   // now we have to call next for to jump next step mean data save
+//     next()
+// })
 
 // step 3 : creating a model
 // we show pass two parameter in model (this is collection name,ourSchema)
@@ -45,7 +48,7 @@ const Users =  mongoose.model("user",userSchema)
 // await Users.create({name:"roman",age:26,email:"romanrg@gmail.com"})
 
 //step 5 : now we will update our data 
-await Users.updateOne({email:"romanrg@gmail.com"},{$set:{age:24}})
+await Users.updateOne({email:"romanrg@gmail.com"},{$set:{age:46}})
 
 // for closing method
 await mongoose.connection.close()
